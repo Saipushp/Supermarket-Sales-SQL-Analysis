@@ -1,0 +1,40 @@
+--customer_segmentation.sql
+SELECT 
+    CustomerType,
+    COUNT(*) AS TotalTransactions,
+    AVG(Total) AS AvgSpending,
+    SUM(Total) AS TotalRevenue
+FROM Supermarket_Sales
+GROUP BY CustomerType;
+--sales_trends.sql
+SELECT SaleDate, COUNT(*) AS Transactions, SUM(Total) AS Revenue
+FROM Supermarket_Sales
+GROUP BY SaleDate
+ORDER BY SaleDate;
+
+SELECT DATEPART(HOUR, SaleTime) AS HourOfDay,
+       COUNT(*) AS Transactions,
+       SUM(Total) AS Revenue
+FROM Supermarket_Sales
+GROUP BY DATEPART(HOUR, SaleTime);
+
+-- product_line_performance.sql
+SELECT ProductLine,
+       SUM(Total) AS Revenue,
+       AVG(Quantity) AS AvgQuantity
+FROM Supermarket_Sales
+GROUP BY ProductLine
+ORDER BY Revenue DESC;
+--- payment_insights.sql
+SELECT Payment,
+       COUNT(*) AS TotalPayments,
+       SUM(Total) AS Revenue
+FROM Supermarket_Sales
+GROUP BY Payment;
+
+SELECT Payment,
+       AVG(Rating) AS AvgRating
+FROM Supermarket_Sales
+GROUP BY Payment;
+
+
